@@ -5,7 +5,7 @@ module Razoul
     attr_accessor :config
 
     def initialize(config)
-      @logger= Razoul::Logger.new
+      @logger = Razoul::Logger.new
       @config = self.load(config)
     end
 
