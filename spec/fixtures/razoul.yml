@@ -1,0 +1,7 @@
+razoul:
+  prefix_key: 'Razoul_Auth_key'
+  redis:
+    host: localhost
+    port: 6379
+    db: 0
+

@@ -1,3 +1,8 @@
+#coding: utf-8
+lib = File.expand_path('../lib', __FILE__)
+$LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
+require 'razoul/version'
+
 Gem::Specification.new do |s|
   s.name           = 'razoul'
   s.version        =  Razoul::VERSION
@@ -9,17 +14,22 @@ Gem::Specification.new do |s|
   s.homepage       = 'https://github.com/GabrielMalakias/Razoul'
   s.license        = 'MIT'
 
-  s.files          = %(README.md) + Dir['lib/**/*']
+  s.files          = %w(README.md) + Dir['lib/**/*']
   s.executables    = s.files.grep(%r(bin/)) { |f| File.basename(f) }
   s.test_files     = Dir['spec/**/*']
   s.require_paths  = ['lib']
 
-  s.add_dependency  = 'redis', '~> 3.2.1'
+  s.add_dependency 'redis', '~> 3.2.1'
+  s.add_dependency 'slogger'
 
-  s.add_developement_dependency 'rspec'
-  s.add_developement_dependency 'rspec-its'
-  s.add_developement_dependency 'pry'
-  s.add_developement_dependency 'webmock'
-  s.add_developement_dependency 'rubocop'
-  s.add_developement_dependency 'rubocop-spec'
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'rspec-its'
+  s.add_development_dependency 'pry'
+  s.add_development_dependency 'webmock'
+  s.add_development_dependency 'rubocop'
+  s.add_development_dependency 'rubocop-rspec'
+  s.add_development_dependency 'simplecov-rcov'
+  s.add_development_dependency 'simplecov-gem-adapter'
+  s.add_development_dependency 'simplecov'
 end
+
