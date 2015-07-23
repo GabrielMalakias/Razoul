@@ -12,3 +12,12 @@ gem 'razoul'
 ```
 # Configuration
 In Rails applications create a razoul.rb in config/initializers
+```ruby
+Razoul.configure do |config|
+   config.persistence = 'redis'
+   config.redis_password  = '1234'
+   config.token_key = 'Razoul_Auth'
+   config.prefix_token = 'RAZOUL'
+end
+
+```
