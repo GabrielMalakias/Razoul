@@ -2,7 +2,7 @@ module Razoul
   class Configuration
     EXTENSION = '.yml'
 
-    attr_accessor :config
+    attr_accessor :test
 
     def initialize(config)
       @logger = Razoul::Logger.new
