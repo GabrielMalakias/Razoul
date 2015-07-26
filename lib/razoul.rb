@@ -1,6 +1,9 @@
 require 'slogger'
+require 'redis'
 require 'razoul/configuration'
-require 'razoul/persistence'
+require 'razoul/persistence/database'
+require 'razoul/persistence/redis'
+require 'razoul/token'
 module Razoul
 
  class << self

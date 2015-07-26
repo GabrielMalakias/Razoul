@@ -64,6 +64,7 @@ GEM
       simplecov (>= 0.4.1)
     slogger (0.0.11)
     slop (3.6.0)
+    timecop (0.7.4)
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -81,4 +82,5 @@ DEPENDENCIES
   simplecov
   simplecov-gem-adapter
   simplecov-rcov
+  timecop
   webmock

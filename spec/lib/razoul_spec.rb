@@ -17,7 +17,7 @@ RSpec.describe Razoul do
   
   
   describe '.configure' do
-    let(:persistence) { Razoul::Persistence.new }
+    let(:persistence) { Razoul::Persistence::Database.new }
 
     before do 
       Razoul.configure do |config|
