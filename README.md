@@ -17,3 +17,10 @@ Razoul.configure do |config|
 end
 
 ```
+
+In controller you need add the code below
+
+```ruby
+controller TestController < Razoul::Controller
+before_action :authenticate, :only [:<controller api action>]
+```
