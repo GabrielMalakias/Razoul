@@ -24,6 +24,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'actionpack', '~> 4.2.3'
 
   s.add_development_dependency 'rspec'
+  s.add_development_dependency 'timecop'
   s.add_development_dependency 'rspec-its'
   s.add_development_dependency 'pry'
   s.add_development_dependency 'webmock'
