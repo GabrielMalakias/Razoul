@@ -11,6 +11,7 @@
 *.o
 *.a
 *.gem
+*.swp
 mkmf.log
 .DS_Store
 
