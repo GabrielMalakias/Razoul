@@ -14,10 +14,14 @@ module Razoul
         conn.set(key, value)
       end
 
+      def self.find(conn, key)
+        conn.get(key)
+      end
+
       def self.hash_config_attrs(config)
         hash = {}
         constants.map do |const|
-          value =  config.has_attr?("#{self.class.name}_#{const.downcase}") ? 
+          value =  config.has_attr?("#{self.class.name}_#{const.downcase}") ?
             config.send("#{self.class.name}_#{const.downcase}") : const_get(const)
           hash.merge!(const.downcase.to_sym =>  value)
         end

@@ -1,5 +1,5 @@
 module Razoul
-  class AuthencicationController < ActionController::Base
+  class AuthenticationController < ActionController::Base
     def authenticate!
     end
   end

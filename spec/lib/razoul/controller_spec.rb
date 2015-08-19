@@ -5,7 +5,6 @@ RSpec.describe Razoul::Controller do
 
   describe '#test' do
     it 'test' do
-      binding.pry
     end
   end
 

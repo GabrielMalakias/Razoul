@@ -17,6 +17,10 @@ module Razoul
         call_module.save(key, value)
       end
 
+      def find(key)
+        call_module.find(key)
+      end
+
       private
 
       def call_module
