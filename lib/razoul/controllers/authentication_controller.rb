@@ -1,7 +1,7 @@
 module Razoul
   class AuthenticationController < ActionController::Base
     def authenticate!
-      @token = request.headers[Razoul.configuration.key_header]
+      @token = request.headers[Razoul.configuration.token_key]
       render_error unless valid_token?
     end
 

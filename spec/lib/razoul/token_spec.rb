@@ -17,9 +17,18 @@ RSpec.describe Razoul::Token do
     end
   end
 
-  describe '#new' do
-    subject { described_class.new } 
+  describe '#generate!' do
+    subject { described_class.generate! }
     its(:created_at)   { is_expected.to eq time_in_seconds }
     its(:'value.size') { is_expected.to eq 64 }
   end
+
+  describe '#expired?' do
+
+    subject { described_class.new.expired? }
+    context 'when isn\'t expired' do
+     it { is_expected.to eq false }
+    end
+  end
+
 end

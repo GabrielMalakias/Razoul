@@ -1,6 +1,7 @@
 module Razoul
   class Token
     attr_accessor :value, :created_at
+    private_class_method :new
 
     def initialize
       @value = self.generate_key
@@ -14,12 +15,20 @@ module Razoul
       OpenSSL::HMAC.hexdigest(digest, secret, string)
     end
 
-    def is_expired?
+    def expired?
       Time.now.to_i - self.created_at >= Razoul.configuration.expiration_time
     end
 
+    def current_token
+      persistence.find(Razoul.configuration.token_key)
+    end
+
+    def self.generate!
+      persistence.save(Razoul.configuration.token_key, Marshal.dump(new))
+    end
+
     def valid_token?(token)
-      persistence.find(token)
+      persistence.find(Razoul.configuration.token_key)
     end
 
     def persistence
