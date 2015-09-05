@@ -1,6 +1,7 @@
 module Razoul
   class Configuration
-    attr_accessor :token_prefix, :database, :token_key, :login, :password
+    attr_accessor :token_prefix, :database, :token_key, :login, :password,
+      :key_header 
     def initialize
       @token_prefix = 'Razoul_Auth'
       @database = 'redis'

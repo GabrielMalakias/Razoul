@@ -1,7 +1,7 @@
 module Razoul
   class Token
     attr_accessor :value, :created_at
-    
+
     def initialize
       @value = self.generate_key
       @created_at = Time.now.to_i
@@ -16,6 +16,14 @@ module Razoul
 
     def is_expired?
       Time.now.to_i - self.created_at >= Razoul.configuration.expiration_time
+    end
+
+    def valid_token?(token)
+      persistence.find(token)
+    end
+
+    def persistence
+      Razoul::Persistence::Database.new
     end
   end
 end
