@@ -1,5 +1,5 @@
 module Razoul
-  class Token
+  class Token < Model
     attr_accessor :value, :created_at
     private_class_method :new
 
@@ -16,23 +16,23 @@ module Razoul
     end
 
     def expired?
+      puts "Time now: #{Time.now.to_i} - #{self.created_at}"
       Time.now.to_i - self.created_at >= Razoul.configuration.expiration_time
     end
 
-    def current_token
-      persistence.find(Razoul.configuration.token_key)
-    end
+    class << self
+      def current_token
+        Marshal.load(persistence.find(Razoul.configuration.token_key))
+      end
 
-    def self.generate!
-      persistence.save(Razoul.configuration.token_key, Marshal.dump(new))
+      def generate!
+        persistence.save(Razoul.configuration.token_key, Marshal.dump(new))
+      end
     end
 
     def valid_token?(token)
       persistence.find(Razoul.configuration.token_key)
     end
 
-    def persistence
-      Razoul::Persistence::Database.new
-    end
   end
 end

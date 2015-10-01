@@ -7,6 +7,7 @@ require 'razoul/persistence/database'
 require 'razoul/controllers/authentication_controller'
 require 'razoul/controllers/generator_controller'
 require 'razoul/persistence/redis'
+require 'razoul/model'
 require 'razoul/token'
 require 'razoul/controller'
 module Razoul

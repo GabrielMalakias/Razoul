@@ -19,16 +19,28 @@ RSpec.describe Razoul::Token do
 
   describe '#generate!' do
     subject { described_class.generate! }
-    its(:created_at)   { is_expected.to eq time_in_seconds }
-    its(:'value.size') { is_expected.to eq 64 }
+    it  { is_expected.to be_truthy }
   end
 
   describe '#expired?' do
 
-    subject { described_class.new.expired? }
-    context 'when isn\'t expired' do
-     it { is_expected.to eq false }
+    context 'when expiration_time eql 1 minute' do
+      subject { described_class.current_token.expired? }
+      context 'when isn\'t expired' do
+        it { is_expected.to eq false }
+      end
+    end
+
+    context 'when expiration_time eql 1 second' do
+      before do
+        Razoul.configure do |config|
+          config.expiration_time = 1
+        end
+      end
+      context 'when is expired' do
+        subject { described_class.current_token.expired? }
+        it { is_expected.to eq true }
+      end
     end
   end
-
 end

@@ -14,11 +14,11 @@ module Razoul
       end
 
       def save(key, value)
-        call_module.save(key, value)
+        call_module.save(conn, key, value)
       end
 
       def find(key)
-        call_module.find(key)
+        call_module.find(conn, key)
       end
 
       private

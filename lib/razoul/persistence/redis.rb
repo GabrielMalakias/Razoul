@@ -12,7 +12,7 @@ module Razoul
         end
 
         def save(conn, key, value)
-          conn.set(key, value)
+          conn.set(key, value).eql?('OK') ? true : false
         end
 
         def find(conn, key)
