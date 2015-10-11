@@ -4,12 +4,14 @@ require 'action_pack'
 require 'action_controller'
 require 'razoul/configuration'
 require 'razoul/persistence/database'
+require 'razoul/user'
+require 'razoul/controller'
 require 'razoul/controllers/authentication_controller'
 require 'razoul/controllers/generator_controller'
 require 'razoul/persistence/redis'
 require 'razoul/model'
 require 'razoul/token'
-require 'razoul/controller'
+
 module Razoul
  class << self
    attr_writer :configuration

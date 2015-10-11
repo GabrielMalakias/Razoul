@@ -23,11 +23,16 @@ RSpec.describe Razoul::Persistence::Redis do
     let(:token_key)  { config.token_key }
     let(:value)      { "RAZOUL_TOKEN" }
     subject { described_class.save(connection, token_key, value) }
-    it { is_expected.to eq "OK" }
+    it { is_expected.to eq true }
   end
 
   describe '#find' do
     let(:key)   { 'ADASDSADASDAS' }
+
+    before do
+      described_class.save(connection, key, key)
+    end
+
     subject { described_class.find(connection, key) }
     it { is_expected.to eq key }
   end

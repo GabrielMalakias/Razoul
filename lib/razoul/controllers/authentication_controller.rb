@@ -1,16 +1,14 @@
 module Razoul
-  class AuthenticationController < ActionController::Base
+  class AuthenticationController < Razoul::Controller
+
     def authenticate!
-      @token = request.headers[Razoul.configuration.token_key]
+      @token = request.headers["HTTP_#{Razoul.configuration.token_key}"]
       render_error unless valid_token?
     end
 
     def valid_token?
-      Razoul::Token.valid_token?(@token)
+      @token.present? ? Razoul::Token.valid_token?(@token) : false
     end
 
-    def render_error
-      render text: "No donuts for you"
-    end
   end
 end

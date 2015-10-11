@@ -33,10 +33,12 @@ RSpec.describe Razoul::Token do
 
     context 'when expiration_time eql 1 second' do
       before do
+        Timecop.travel(Time.now + 1)
         Razoul.configure do |config|
           config.expiration_time = 1
         end
       end
+
       context 'when is expired' do
         subject { described_class.current_token.expired? }
         it { is_expected.to eq true }

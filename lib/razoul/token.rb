@@ -1,3 +1,4 @@
+require 'pry'
 module Razoul
   class Token < Model
     attr_accessor :value, :created_at
@@ -11,7 +12,7 @@ module Razoul
     def generate_key
       digest = OpenSSL::Digest::SHA256.new
       secret = Razoul.configuration.password
-      string = Razoul.configuration.login
+      string = Razoul.configuration.login + Time.now.to_s
       OpenSSL::HMAC.hexdigest(digest, secret, string)
     end
 
@@ -28,11 +29,10 @@ module Razoul
       def generate!
         persistence.save(Razoul.configuration.token_key, Marshal.dump(new))
       end
-    end
 
-    def valid_token?(token)
-      persistence.find(Razoul.configuration.token_key)
+      def valid_token?(token)
+        token.eql?(Marshal.load(persistence.find(Razoul.configuration.token_key)).value) ? true : false
+      end
     end
-
   end
 end
