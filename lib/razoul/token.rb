@@ -1,4 +1,3 @@
-require 'pry'
 module Razoul
   class Token < Model
     attr_accessor :value, :created_at
