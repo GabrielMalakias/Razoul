@@ -13,24 +13,19 @@ require 'razoul/model'
 require 'razoul/token'
 
 module Razoul
- class << self
-   attr_writer :configuration
- end
+  class << self
+    attr_writer :configuration
+  end
 
- def self.configuration
-   @configuration ||= Configuration.new
- end
+  def self.configuration
+    @configuration ||= Configuration.new
+  end
 
- def self.reset
-   @configuration = Configuration.new
- end
+  def self.reset
+    @configuration = Configuration.new
+  end
 
- begin
-   require 'pry'
- rescue LoadError
- end
-
-  def self.configure
+  def self.cmonfigure
     yield(configuration)
   end
 end
