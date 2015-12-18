@@ -1,30 +1,29 @@
-# This references the default Ruby container from
-# the Docker Hub.
-# https://registry.hub.docker.com/_/ruby/
-# If you want to use a specific version you would use a tag:
-# ruby:2.2.2
-box: ruby
-# You can also use services such as databases. Read more on our dev center:
-# http://devcenter.wercker.com/docs/services/index.html
+box: wercker/rvm
+# Build definition
+# See the Rails section on the wercker devcenter:
+# http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
+# You will want to define your database as follows:
 services:
-  - redis
-
-    # - postgres
-    # http://devcenter.wercker.com/docs/services/postgresql.html
-
-    # - mongodb
-    # http://devcenter.wercker.com/docs/services/mongodb.html
-
-# This is the build pipeline. Pipelines are the core of wercker
-# Read more about pipelines on our dev center
-# http://devcenter.wercker.com/docs/pipelines/index.html
+  - wercker/redis
+# See more about services on our devcenter:
+# http://devcenter.wercker.com/articles/services/
 build:
-    # Steps make up the actions in your pipeline
-    # Read more about steps on our dev center:
-    # http://devcenter.wercker.com/docs/steps/index.html
     steps:
-      - bundle-install
-      script:
-        name: rspec
-        code: bundle exec rspec
+        # Uncomment this to force RVM to use a specific Ruby version
+        - rvm-use:
+            version: 2.2.3
 
+        # A step that executes `bundle install` command
+        - bundle-install
+
+        # A custom script step, name value is used in the UI
+        # and the code value contains the command that get executed
+        - script:
+            name: echo ruby information
+            code: |
+                echo "ruby version $(ruby --version) running"
+                echo "from location $(which ruby)"
+                echo -p "gem list: $(gem list)"
+       - script:
+            name: rspec
+            code: bundle exec rspec spec
