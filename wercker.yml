@@ -9,7 +9,10 @@ services:
 # http://devcenter.wercker.com/articles/services/
 build:
     steps:
-       - redis-server
+       - script:
+            name: Starting redis
+            code: redis-server
+
        - script:
             name: downgrade GemFile
             code: gem update --system 2.4.8
