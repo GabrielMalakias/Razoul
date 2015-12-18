@@ -25,7 +25,7 @@ module Razoul
     @configuration = Configuration.new
   end
 
-  def self.cmonfigure
+  def self.configure
     yield(configuration)
   end
 end
