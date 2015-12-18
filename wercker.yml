@@ -11,3 +11,6 @@ build:
     steps:
         # Uncomment this to force RVM to use a specific Ruby version
        - bundle-install
+       - script:
+            name: rspec
+            code: bundle exec rspec
