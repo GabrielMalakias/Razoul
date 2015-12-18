@@ -7,7 +7,7 @@ box: ruby
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
 services:
-    - redis
+  - redis
 
     # - postgres
     # http://devcenter.wercker.com/docs/services/postgresql.html
@@ -23,8 +23,8 @@ build:
     # Read more about steps on our dev center:
     # http://devcenter.wercker.com/docs/steps/index.html
     steps:
-        - bundle-install
-         script:
-            name: rspec
-            code: bundle exec rspec
+      - bundle-install
+      script:
+        name: rspec
+        code: bundle exec rspec
 
