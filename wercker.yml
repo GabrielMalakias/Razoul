@@ -9,8 +9,10 @@ services:
 # http://devcenter.wercker.com/articles/services/
 build:
     steps:
-        # Uncomment this to force RVM to use a specific Ruby version
-       - bundle config build.nokogiri --use-system-libraries
+       - script:
+            name: downgrade GemFile
+            code: gem update --system 2.4.8
+
        - bundle-install
        - script:
             name: rspec
