@@ -4,7 +4,7 @@ box: wercker/rvm
 # http://devcenter.wercker.com/articles/languages/ruby/settingup-rails4.html
 # You will want to define your database as follows:
 services:
-  - wercker/redis
+  - redis
 # See more about services on our devcenter:
 # http://devcenter.wercker.com/articles/services/
 build:
@@ -14,7 +14,6 @@ build:
             version: 2.2.3
 
         # A step that executes `bundle install` command
-        - bundle-install
 
         # A custom script step, name value is used in the UI
         # and the code value contains the command that get executed
